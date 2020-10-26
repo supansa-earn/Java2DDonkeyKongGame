@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Donkey actor class.
- * 
+ *
  * @author Leonardo Ono (ono.leo@gmail.com)
  */
 public class Donkey extends DonkeyActor {
@@ -43,7 +43,7 @@ public class Donkey extends DonkeyActor {
             firstAnimationsName.add("donkey_right_hand_up");
         }
     }
-    
+
     private void getBarrelsAnimationFrames() {
         for (AnimationObjectInterface object : getAnimation().objects){
             AnimationSpriteObject spriteObject = (AnimationSpriteObject) object;
@@ -56,7 +56,7 @@ public class Donkey extends DonkeyActor {
             }
         }
     }
-    
+
     private void setAnimationSpriteObjectVisible(AnimationSpriteObject spriteObject, boolean visible) {
         for (AnimationObjectFrame frame : spriteObject.keyframes.values()) {
             frame.alpha = visible ? 1 : 0;
@@ -77,7 +77,7 @@ public class Donkey extends DonkeyActor {
             }
         }
     }
-    
+
     @Override
     public void updatePlaying() {
         yield:
@@ -131,19 +131,19 @@ public class Donkey extends DonkeyActor {
             }
         }
     }
-    
+
     @Override
     public void stateChanged() {
-        setPaused(game.getState() == State.PLAYING_DESTROYING_ENEMY 
+        setPaused(game.getState() == State.PLAYING_DESTROYING_ENEMY
                 || game.getState() == State.PLAYING_MARIO_START_DYING
                 || game.getState() == State.PLAYING_MARIO_DIED
                 || game.getState() == State.GAME_OVER);
-        setVisible(game.getState() == State.PLAYING 
-                || game.getState() == State.PLAYING_DESTROYING_ENEMY 
+        setVisible(game.getState() == State.PLAYING
+                || game.getState() == State.PLAYING_DESTROYING_ENEMY
                 || game.getState() == State.PLAYING_MARIO_START_DYING
                 || game.getState() == State.PLAYING_MARIO_DIED
                 || game.getState() == State.GAME_OVER);
-        
+
         if (game.getState() == State.INTRO_HOW_HIGH) {
             instructionPointer = 0;
         }

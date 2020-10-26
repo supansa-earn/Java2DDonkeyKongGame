@@ -418,8 +418,9 @@ public class DonkeyActor extends Actor<DonkeyGame> {
     protected void updatePlayingDestroyingEnemy() {
     }
 
-    protected void updateLevelCleared() {
-    }
+   protected void updateLevelCleared() {
+
+   }
 
     protected void updatePlayingMarioStartDying() {
     }

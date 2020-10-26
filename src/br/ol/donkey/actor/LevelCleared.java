@@ -6,11 +6,11 @@ import br.ol.donkey.DonkeyGame.State;
 
 /**
  * LevelCleared actor class.
- * 
+ *
  * @author Leonardo Ono (ono.leo@gmail.com)
  */
 public class LevelCleared extends DonkeyActor {
-    
+
     public LevelCleared(DonkeyGame game) {
         super(game);
     }
@@ -20,7 +20,7 @@ public class LevelCleared extends DonkeyActor {
         setCollisionCheckEnabled(false);
         setKinematic(true);
     }
-    
+
     @Override
     public void updateLevelCleared() {
         yield:
@@ -35,12 +35,14 @@ public class LevelCleared extends DonkeyActor {
                     if (getAnimation().playing) {
                         break yield;
                     }
-                    game.goToNextLevel();
-                    break yield;
+//                    game.goToNextLevel();
+//                    break yield;
+
             }
-        }        
+        }
     }
-    
+
+
     @Override
     public void stateChanged() {
         setPaused(game.getState() != State.LEVEL_CLEARED);
@@ -48,6 +50,6 @@ public class LevelCleared extends DonkeyActor {
         if (game.getState() == State.LEVEL_CLEARED) {
             instructionPointer = 0;
         }
-    }    
-        
+    }
+
 }

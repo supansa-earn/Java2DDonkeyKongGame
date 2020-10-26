@@ -37,7 +37,7 @@ public class Title extends DonkeyActor {
                     if (getAnimation().currentFrameIndex < 65) {
                         break yield;
                     }
-                    game.getTextBitmapScreen().print(2, 30, "PROGRAMMED BY O.L.  2017");
+                    game.getTextBitmapScreen().print(2, 30, "PROGRAMMED BY NEP");
                     game.setTextBitmapScreenVisible(true);
                     instructionPointer = 2;
                 case 2:

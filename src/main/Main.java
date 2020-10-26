@@ -21,7 +21,7 @@ public class Main {
                 DonkeyGame game = new DonkeyGame();
                 Display view = new Display(game);
                 JFrame frame = new JFrame();
-                frame.setTitle("Java Donkey Kong");
+                frame.setTitle("Bonny Girl");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().add(view);
                 frame.pack();

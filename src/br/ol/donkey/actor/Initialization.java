@@ -30,7 +30,7 @@ public class Initialization extends DonkeyActor {
                     waitTime = System.currentTimeMillis();
                     instructionPointer = 1;
                 case 1:
-                    if (System.currentTimeMillis() - waitTime < 3000) {
+                    if (System.currentTimeMillis() - waitTime < 10) {
                         break yield;
                     }
                     game.setState(State.OL_PRESENTS);

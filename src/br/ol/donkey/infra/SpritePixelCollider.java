@@ -12,7 +12,7 @@ import java.util.Set;
 
 /**
  * SpritePixelCollider class.
- * 
+ *
  * @author Leonardo Ono (ono.leo@gmail.com)
  */
 public class SpritePixelCollider {
@@ -23,7 +23,7 @@ public class SpritePixelCollider {
     private final Rectangle checkArea = new Rectangle();
     private int nonCollidingColor = 0;
     private final Point lastCollisionScreenPoint = new Point();
-    
+
     public SpritePixelCollider() {
     }
 
@@ -38,7 +38,7 @@ public class SpritePixelCollider {
             checkArea.setBounds(0, 0, sprite.getWidth(), sprite.getHeight());
         }
     }
-    
+
     public Actor getActor() {
         if (actor == null) {
             return emptyActor;
@@ -93,7 +93,7 @@ public class SpritePixelCollider {
         int y = sy - (int) getActor().getY() + sprite.getPivotY();
         return checkArea.contains(x, y);
     }
-    
+
     public int getScreenPixel(int sx, int sy) {
         if (sprite == null) {
             return nonCollidingColor;
@@ -105,11 +105,11 @@ public class SpritePixelCollider {
         }
         return sprite.getPixel(x, y);
     }
-    
+
     public boolean collides(SpritePixelCollider c) {
         return SpritePixelCollider.this.collides(0, 0, c);
     }
-    
+
     public boolean collides(int dx, int dy, SpritePixelCollider c) {
         if (sprite == null || c.getSprite() == null) {
             return false;
@@ -118,17 +118,17 @@ public class SpritePixelCollider {
         double oex = c.getActor().getX();
         double oey = c.getActor().getY();
         c.getActor().translate(dx, dy);
-        
+
         SpritePixelCollider c1 = this;
         SpritePixelCollider c2 = c;
         int a1 = c1.getSprite().getWidth() * c1.getSprite().getHeight();
         int a2 = c2.getSprite().getWidth() * c2.getSprite().getHeight();
-        
+
         if (a2 < a1) {
             c2 = this;
             c1 = c;
         }
-        
+
         int sx1 = (int) c1.getActor().getX() - c1.getSprite().getPivotX();
         int sx2 = sx1 + c1.getSprite().getWidth();
         int sy1 = (int) c1.getActor().getY() - c1.getSprite().getPivotY();
@@ -150,51 +150,51 @@ public class SpritePixelCollider {
         c.getActor().set(oex, oey);
         return false;
     }
-    
+
     private final Set<Integer> collidersColorsCheck = new HashSet<Integer>();
-    
+
     public boolean collides(SpritePixelCollider c, Integer ... colors) {
         return collides(0, 0, c, colors);
     }
-    
+
     public boolean collides(int dx, int dy, SpritePixelCollider c, Integer ... colors) {
         if (sprite == null || c.getSprite() == null) {
             return false;
         }
         collidersColorsCheck.clear();
         collidersColorsCheck.addAll(Arrays.asList(colors));
-        
+
         double oex = c.getActor().getX();
         double oey = c.getActor().getY();
         c.getActor().translate(dx, dy);
-        
+
         SpritePixelCollider c1 = this;
         SpritePixelCollider c2 = c;
         int a1 = c1.getSprite().getWidth() * c1.getSprite().getHeight();
         int a2 = c2.getSprite().getWidth() * c2.getSprite().getHeight();
-        
+
         if (a2 < a1) {
             c2 = this;
             c1 = c;
         }
-        
+
         int sx1 = (int) c1.getActor().getX() - c1.getSprite().getPivotX();
         int sx2 = sx1 + c1.getSprite().getWidth();
         int sy1 = (int) c1.getActor().getY() - c1.getSprite().getPivotY();
         int sy2 = sy1 + c1.getSprite().getHeight();
         for (int sy = sy1; sy < sy2; sy++) {
             for (int sx = sx1; sx < sx2; sx++) {
-                if (!c1.insideScreenCheckArea(sx, sy) 
+                if (!c1.insideScreenCheckArea(sx, sy)
                         || !c2.insideScreenCheckArea(sx, sy)) {
-                    
+
                     continue;
                 }
                 int p1 = c1.getScreenPixel(sx, sy);
                 int p2 = c2.getScreenPixel(sx, sy);
                 int csp = getScreenPixel(sx, sy);
-                if (p1 != c1.getNonCollidingColor() && p2 != c2.getNonCollidingColor() 
+                if (p1 != c1.getNonCollidingColor() && p2 != c2.getNonCollidingColor()
                         && collidersColorsCheck.contains(csp)) {
-                    
+
                     collidersColorsCheck.remove(csp);
                     if (collidersColorsCheck.isEmpty()) {
                         c.getActor().set(oex, oey);
@@ -207,7 +207,7 @@ public class SpritePixelCollider {
         c.getActor().set(oex, oey);
         return false;
     }
-    
+
     public void draw(Graphics2D g) {
         if (sprite == null) {
             return;
@@ -216,11 +216,11 @@ public class SpritePixelCollider {
         g.translate((int) getActor().getX(), (int) getActor().getY());
         sprite.draw(g);
         g.setXORMode(Color.BLUE);
-        g.fillRect(checkArea.x - sprite.getPivotX(), checkArea.y 
+        g.fillRect(checkArea.x - sprite.getPivotX(), checkArea.y
                 - sprite.getPivotY(), checkArea.width, checkArea.height);
-        
+
         g.setPaintMode();
         g.setTransform(at);
     }
-    
+
 }

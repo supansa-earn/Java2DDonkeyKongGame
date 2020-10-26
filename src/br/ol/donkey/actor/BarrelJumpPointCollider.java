@@ -49,7 +49,7 @@ public class BarrelJumpPointCollider extends DonkeyActor {
         }        
         setDestroyed(true);
         setVisible(false);
-        game.showScorePoint((int) barrel.getX(), (int) barrel.getY(), 100);
+        game.showScorePoint((int) barrel.getX(), (int) barrel.getY(), 300);
     }
     
     @Override

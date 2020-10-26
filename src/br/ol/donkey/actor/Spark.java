@@ -45,7 +45,7 @@ public class Spark extends DonkeyActor {
     }
     
     public void show(int x, int y, int scorePoint) {
-        this.scorePoint = scorePoint;
+        this.scorePoint = scorePoint+500; //plus with 300 it will be 800 points
         set(x, y);
         game.setState(State.PLAYING_DESTROYING_ENEMY);
     }
